@@ -1,0 +1,24 @@
+<div class="login">
+    <a href="https://fontmeme.com/es/fuente-pokemon/"><img src="https://fontmeme.com/permalink/191125/f87c04db0b54e3b89caa3d1d3ee405fb.png" alt="fuente-pokemon" border="0"></a>
+    <mat-form-field>
+        <input matInput [(ngModel)]="email" placeholder="Email" [formControl]="emailFormControl"/>
+        <mat-error *ngIf="emailFormControl.hasError('email')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is required
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="password" [formControl]="passwordFormControl"
+            id="password" type="password" placeholder="Password" (keyup.enter)="doSubmitLogin()" required/>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">Password is required</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="!emailFormControl.hasError('required') &&
+                      !emailFormControl.hasError('email') &&
+                      !passwordFormControl.hasError('required') && wrongAccess">
+        email or password are not valid
+    </mat-error>
+    <button class="login-button" mat-raised-button color="primary" (click)="doSubmitLogin()">Log in</button>
+    <button class="login-button" mat-raised-button color="primary" (click)="loadSignUpForm()">Sign up</button>
+</div>
